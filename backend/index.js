@@ -6,9 +6,12 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(cors({
-  origin: 'https://code-submission-app-tyjp-ffe9ow95u-swaraj-kumars-projects.vercel.app/'
-}));
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://code-submission-app-tyjp-ffe9ow95u-swaraj-kumars-projects.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
 const port = process.env.PORT || 5000;
 
 const db = mysql.createConnection({
