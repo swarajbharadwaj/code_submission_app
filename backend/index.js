@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(cors({
-  origin: 'https://code-submission-app-tyjp.vercel.app/'
+  origin: 'https://code-submission-app-tyjp-ffe9ow95u-swaraj-kumars-projects.vercel.app/'
 }));
 const port = process.env.PORT || 5000;
 
