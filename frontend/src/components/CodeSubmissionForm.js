@@ -99,7 +99,7 @@ const CodeSubmissionForm = () => {
      
       console.log(stdout);
       if (stderr == null) {
-        const response = await axios.post("https://backend-swarajbharadwaj-swaraj-kumars-projects.vercel.app/submit", {
+        const response = await axios.post("https://code-submission-app.vercel.app/submit", {
           username: formData.username,
           codeLanguage: formData.codeLanguage,
           stdin: formData.stdin,
