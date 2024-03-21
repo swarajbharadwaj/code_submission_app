@@ -10,7 +10,7 @@ function Page2() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("https://backend-swarajbharadwaj-swaraj-kumars-projects.vercel.app/snippets");
+        const response = await axios.get("https://code-submission-app.vercel.app/snippets");
         setEntries(response.data.reverse()); // Reverse the entries to display latest first
       } catch (error) {
         console.error('Error fetching data:', error);
