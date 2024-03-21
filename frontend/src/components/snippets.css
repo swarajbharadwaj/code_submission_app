@@ -1,0 +1,42 @@
+/* snippets.css */
+
+.page2-container {
+       width: 100vw; /* Cover the entire viewport width */
+       margin: 0 auto;
+       padding: 20px;
+       overflow-x: auto; /* Add horizontal scrollbar if content overflows */
+     }
+     
+     table {
+       width: 100%; /* Set table width to 100% */
+       border-collapse: collapse;
+     }
+     
+     th, td {
+       border: 1px solid #822121;
+       padding: 8px;
+     }
+     
+     th {
+       background-color: #f2f2f2;
+     }
+     
+     tr:nth-child(even) {
+       background-color: #f2f2f2;
+     }
+     
+     tr:hover {
+       background-color: #ddd;
+     }
+     
+     th, td {
+       text-align: left;
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+     }
+     
+     td:last-child {
+       width: 150px; /* Adjust the width as needed */
+     }
+     
