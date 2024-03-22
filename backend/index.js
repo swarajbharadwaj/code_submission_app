@@ -4,24 +4,18 @@ const mysql = require('mysql');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-
 const port = process.env.PORT || 5000;
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://code-submission-app-tyjp.vercel.app'); // Allow access from any origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+
+app.use(cors()); // Set CORS headers globally
+
+app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: process.env.DB_host,
   user: process.env.DB_user,
   password: process.env.DB_password,
-  database:process.env.DB_database,
+  database: process.env.DB_database,
 });
-
 
 db.connect((err) => {
   if (err) {
@@ -30,13 +24,11 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
-app.use(bodyParser.json());
-
 app.post('/submit', (req, res) => {
   const { username, codeLanguage, stdin, sourceCode, out } = req.body;
 
   const sql = 'INSERT INTO code_snippets (username, code_language, stdin, source_code, out_t) VALUES (?, ?, ?, ?, ?)';
-  db.query(sql, [username, codeLanguage, stdin, sourceCode,out], (err, result) => {
+  db.query(sql, [username, codeLanguage, stdin, sourceCode, out], (err, result) => {
     if (err) {
       res.status(500).json({ error: 'Failed to submit code snippet' });
       throw err;
