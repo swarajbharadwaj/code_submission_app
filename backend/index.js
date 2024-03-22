@@ -4,17 +4,17 @@ const mysql = require('mysql');
 
 
 const app = express();
-const port = process.env.PORT || 5000;
-
 app.use(bodyParser.json());
 
+const port = process.env.PORT || 5000;
 
 const db = mysql.createConnection({
   host: process.env.DB_host,
   user: process.env.DB_user,
   password: process.env.DB_password,
-  database: process.env.DB_database,
+  database:process.env.database,
 });
+
 
 db.connect((err) => {
   if (err) {
@@ -23,11 +23,13 @@ db.connect((err) => {
   console.log('Connected to MySQL database');
 });
 
+app.use(bodyParser.json());
+
 app.post('/submit', (req, res) => {
   const { username, codeLanguage, stdin, sourceCode, out } = req.body;
 
   const sql = 'INSERT INTO code_snippets (username, code_language, stdin, source_code, out_t) VALUES (?, ?, ?, ?, ?)';
-  db.query(sql, [username, codeLanguage, stdin, sourceCode, out], (err, result) => {
+  db.query(sql, [username, codeLanguage, stdin, sourceCode,out], (err, result) => {
     if (err) {
       res.status(500).json({ error: 'Failed to submit code snippet' });
       throw err;
