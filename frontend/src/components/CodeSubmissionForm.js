@@ -95,7 +95,7 @@ const CodeSubmissionForm = () => {
      stdout=await atob(stdout);
      console.log(compile_output);
       //console.log(stdout);
-      if (compile_output!=null ) stdout= "compilation error or runtime error";
+      if (stdout==null ) stdout= "compilation error or runtime error or no output";
      
       console.log(stdout);
       if (stderr == null) {
