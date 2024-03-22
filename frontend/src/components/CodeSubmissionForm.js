@@ -91,15 +91,15 @@ const CodeSubmissionForm = () => {
       var { stderr, stdout ,compile_output} = response2.data;
       
     
-      compile_output=atob(compile_output);
-     stdout=atob(stdout);
+      compile_output=await atob(compile_output);
+     stdout=await atob(stdout);
      console.log(compile_output);
       //console.log(stdout);
-      if (!stdout ) stdout= "compilation error or runtime error";
+      if (compile_output!=null ) stdout= "compilation error or runtime error";
      
       console.log(stdout);
       if (stderr == null) {
-        const response = await axios.post("https://code-submission-app.vercel.app/submit", {
+        const response = await axios.post("https://code-submission-b9z6b7dkp-swaraj-kumars-projects.vercel.app/submit", {
           username: formData.username,
           codeLanguage: formData.codeLanguage,
           stdin: formData.stdin,
